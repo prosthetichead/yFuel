@@ -1,8 +1,21 @@
-<ion-view title="Fuel Detail">
-	<ion-header-bar  class="bar-positive">
-  		<h1 class="title">Fuel Detail</h1>
-	</ion-header-bar>
+<ion-view title="Fuel Detail">	
 	<ion-content padding="true">
-		DETAILS
+		<div class="card">
+  			<div class="item item-icon-left">
+  	  			<i class="icon ion-clock"> </i>
+  	  			{{fuelRecord.date_time}}
+  			</div>
+  			<div class="item item-icon-left">
+  	  			<i class="icon ion-model-s"> </i>
+  	  			{{fuelRecord.odometer_reading}}
+  			</div>
+  			<div class="item item-icon-left">
+  	  			<i class="icon ion-information-circled"> </i>
+  	  			{{fuelRecord.trip_purpose}}
+  			</div>
+  			<div class="item item-icon-left">
+  	  			{{fuelRecord.reason}}
+  			</div>
+		</div>
 	</ion-content>
 </ion-view>

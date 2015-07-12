@@ -1,18 +1,56 @@
-<ion-view title="Fuel">
+<ion-view title="Fuel Records">
 	
-	<ion-header-bar  class="bar-positive">
-  		<h1 class="title">Fuel Usage</h1>
-  		<div class="buttons">
-    		<button class="button button-clear"><span class='icon ion-plus'/> </button>
-  		</div>
-	</ion-header-bar>
-    
     <ion-content>
+    <button class="button button-clear" ng-click="showFuelRecordModal()"> <span class='icon ion-plus'/> </button>
     	<ion-list ng-repeat="fuelRecord in fuelRecords">
   			<ion-item class="item item-icon-right" ui-sref="fuel.detail({fuelRecordIndex: $index})">
-  					<span>{{fuelRecord.title}}</span>
+  					<span>{{fuelRecord.date_time}} {{fuelRecord.trip_purpose}}</span>
   			</ion-item>
 		</ion-list>
     </ion-content>
-
 </ion-view>
+
+<!-- Add new Fuel Record Model -->
+    <script id="fuelRecordModal.html" type="text/ng-template">
+
+  		<div class="modal">
+			<!-- Modal header bar -->
+	    	<ion-header-bar class="bar-secondary">
+	      		<h1 class="title">Add New Fuel Usage Record</h1>
+	      		<button class="button button-clear button-positive" ng-click="hideFuelRecordModal()"><i class="icon ion-close" /></button>
+	    	</ion-header-bar>
+
+    		<!-- Modal content area -->
+    		<ion-content>
+      			<form ng-submit="addFuelRecord(fuelRecord)">
+        			<div class="list">
+	  					<label class="item item-input item-stacked-label">
+    						<span class="input-label">Date and Time</span>
+    						<input type="datetime-local" ng-model="fuelRecord.date_time">
+    					</label>
+  						<label class="item item-input item-stacked-label">
+    						<span class="input-label">Odometer Reading</span>
+    						<input type="text" ng-model="fuelRecord.odometer_reading">
+  						</label>
+  						<label class="item item-input item-select">
+    						<div class="input-label">Trip Purpose</div>
+    							<select ng-model="fuelRecord.trip_purpose">
+      								<option>Private Travel</option>
+									<option>Sales Calls</option>
+      								<option selected>Work Related Travel</option>
+      								<option>Other</option>
+    							</select>
+  						</label>
+  						<label class="item item-input item-stacked-label">
+    						<span class="input-label">Reason</span>
+    						<input type="text" ng-model="fuelRecord.reason">
+  						</label>
+
+					</div>
+        			<div class="padding">
+          				<button type="submit" class="button button-block button-positive">Done</button>
+        			</div>
+      			</form>
+    		</ion-content>
+  		</div>
+	</script>
